@@ -1,0 +1,113 @@
+/* f5d300 */
+
+body{
+    background-color: black !important;
+}
+.preload{
+    width: 100%;
+    height: 100%;
+    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.logo {
+    width: 100%;
+    height: 70px;
+    margin: 150px auto 50px auto;
+    font-size: 50px;
+    text-shadow: -1px 2px 2px #000;
+    text-align: center;
+    color: azure;
+}
+.loader-frame {
+    width: 50vw;
+    height: 50vw;
+    max-width: 300px;
+    max-height: 300px;
+    margin: auto;
+    position: relative;
+}
+.loader1, .loader2, .loader3 {
+    position: absolute;
+    border: 5px solid transparent;
+    border-radius: 80%;
+}
+.loader1 {
+    width: 80%;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 10px solid #f5d300;
+    border-bottom: 10px solid #f5d300;
+    top: 10%;
+    left: 10%;
+    animation: clockwisespin 1s linear 3;
+}
+.loader2 {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 10px solid #09FBD3;
+    border-right: 10px solid #09FBD3;
+    animation: anticlockwisespin 2s linear 1.5;
+}
+.loader3 {
+    width: 60%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 10px solid #FE53BB;
+    border-right: 10px solid #FE53BB;
+    top: 20%;
+    left: 20%;
+    animation: anticlockwisespin 3s linear 1;
+}
+@keyframes clockwisespin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+@keyframes anticlockwisespin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
+}
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.title{
+    position: fixed;
+    color: red;
+}
+
+.line{
+    height: 1000vh;
+    position: absolute;
+    z-index: -1;
+}
+
+#line1{
+    border-right: 1px solid #09FBD3;
+}
+
+#line2{
+    border-right: 1px solid #08F7FE;
+}
+
+.scrollIndicator{
+    width: 3px;
+    height: 1000vh;
+    background: black;
+    position: absolute;
+    margin: 0px;
+}
+
+#bar{
+    width: 3px;
+    height: 0vh;
+    background: #FE53BB;
+    margin-right: 3px;
+}

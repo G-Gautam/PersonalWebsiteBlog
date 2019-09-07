@@ -78,36 +78,54 @@ body{
     to {opacity: 0;}
 }
 
-.title{
-    position: fixed;
-    color: red;
-}
-
-.line{
-    height: 1000vh;
+@keyframes rotate-out {
+    0%   { opacity: 1;}
+    25% { opacity: 1; transform: scale(0.5, 0.5); top: 0%}
+    100% { opacity: 0; transform: scale(0.5, 0.5); top: 100%}
+ } 
+@keyframes rotate-in {
+    from {opacity: 0; transform: scale(0,0)}
+    to {opacity: 1; transform: scale(1,1)}
+ } 
+.vinylNav{
     position: absolute;
-    z-index: -1;
+    height: 100%;
+    width: 30%;
 }
-
-#line1{
-    border-right: 1px solid #09FBD3;
-}
-
-#line2{
-    border-right: 1px solid #08F7FE;
-}
-
-.scrollIndicator{
-    width: 3px;
-    height: 1000vh;
-    background: black;
+.viewContainer{
     position: absolute;
-    margin: 0px;
+    left:30%;
+    height: 100%;
+    width:70%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    background-color: white;
 }
 
-#bar{
-    width: 3px;
-    height: 0vh;
-    background: #FE53BB;
-    margin-right: 3px;
+#page1{
+    background-color: red;
+    height: 100%;
+    width:100%;
+    position: absolute;
+}
+#page2{
+    background-color: yellow;
+    height: 100%;
+    width:100%;
+    position: absolute;
+    opacity: 0;
+}
+#page3{
+    background-color: greenyellow;
+    opacity: 0;
+    height: 100%;
+    width:100%;
+    position: absolute;
+}
+#page4{
+    background-color: skyblue;
+    opacity: 0;
+    height: 100%;
+    width:100%;
+    position: absolute;
 }

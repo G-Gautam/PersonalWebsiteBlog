@@ -1,12 +1,4 @@
-window.onscroll = function () { myFunction() };
-
-function myFunction() {
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100;
-    console.log(scrolled);
-    document.getElementById("bar").style.height = scrolled + "%";
-}
+var currentPage = 1;
 
 (function () {
     var preload = document.getElementById("preload");
@@ -19,9 +11,50 @@ function myFunction() {
             document.body.removeChild(preload);
         } else {
             loading = loading + 1;
-            if(loading == 45){
-                preload.style.animation = 'fadeout 0.5s ease'
+            if (loading == 45) {
+                preload.style.animation = 'fadeout 0.5s'
             }
         }
     }
 })();
+function switchView() {
+    switch (currentPage) {
+        case 1:
+            //destroy page 1 and open page 2
+            var page = document.getElementById('page1');
+            page.style.opacity = 0;
+            page.style.animation = 'rotate-out 1s';
+            var next = document.getElementById('page2');
+            next.style.animation = 'rotate-in 1s';
+            next.style.opacity = 1;
+            currentPage = 2;
+            break;
+        case 2:
+            var page = document.getElementById('page2');
+            page.style.opacity = 0;
+            page.style.animation = 'rotate-out 1s';
+            var next = document.getElementById('page3');
+            next.style.animation = 'rotate-in 1s';
+            next.style.opacity = 1;
+            currentPage = 3;
+            break;
+        case 3:
+            var page = document.getElementById('page3');
+            page.style.opacity = 0;
+            page.style.animation = 'rotate-out 1s';
+            var next = document.getElementById('page4');
+            next.style.animation = 'rotate-in 1s';
+            next.style.opacity = 1;
+            currentPage = 4;
+            break;
+        case 4:
+            var page = document.getElementById('page4');
+            page.style.opacity = 0;
+            page.style.animation = 'rotate-out 1s';
+            var next = document.getElementById('page1');
+            next.style.animation = 'rotate-in 1s';
+            next.style.opacity = 1;
+            currentPage = 1;
+            break;
+    }
+}

@@ -1,5 +1,25 @@
 var currentPage = 1;
 
+function startToneArm() {
+    var arm = document.getElementById('arm');
+    arm.removeEventListener('animationend', originalPositionListen, false);
+    arm.style.animation = 'none';
+    arm.style.animation = 'arm-rotate 3s forwards';
+    arm.addEventListener('animationend', AnimationListener, false);
+}
+
+function AnimationListener(){
+    var arm = document.getElementById('arm');
+    arm.removeEventListener('animationend', AnimationListener, false);
+    arm.style.animation = 'none';
+    void arm.offsetWidth;
+    arm.style.animation = 'arm-return 2s linear';
+    arm.addEventListener('animationend', originalPositionListen, false);
+}
+function originalPositionListen(){
+    startToneArm();
+}
+
 (function () {
     var preload = document.getElementById("preload");
     var loading = 0;
@@ -9,6 +29,7 @@ var currentPage = 1;
         if (loading == 50) {
             clearInterval(id);
             document.body.removeChild(preload);
+            startToneArm();
         } else {
             loading = loading + 1;
             if (loading == 45) {

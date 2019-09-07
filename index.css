@@ -10,7 +10,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 5;
 }
 .logo {
     width: 100%;
@@ -87,10 +87,40 @@ body{
     from {opacity: 0; transform: scale(0,0)}
     to {opacity: 1; transform: scale(1,1)}
  } 
+
+ @keyframes arm-rotate {
+     0% {transform: rotate(0deg); transform-origin: 33.6% 67.5%}
+     25% {transform: rotate(35deg); transform-origin: 33.6% 67.5%}
+     50% {transform: rotate(70deg); transform-origin: 33.6% 67.5%}
+     75% {transform: rotate(105deg); transform-origin: 33.6% 67.5%}
+     100% {transform: rotate(140deg); transform-origin: 33.6% 67.5%}
+ }
+ @keyframes arm-return {
+    from {transform: rotate(140deg); transform-origin: 33.6% 67.5%}
+    to {transform: rotate(0deg); transform-origin: 33.6% 67.5%}
+ }
 .vinylNav{
     position: absolute;
     height: 100%;
     width: 30%;
+    border-right: 1px solid white;
+}
+
+.vinylDisc{
+    position: absolute;
+    height:80%;
+    max-width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.arm{
+    position: relative;
+    height: 40%;
+    margin-top:45%;
+    z-index: 1;
+    right:12%;
 }
 .viewContainer{
     position: absolute;
@@ -103,27 +133,27 @@ body{
 }
 
 #page1{
-    background-color: red;
+    background-color: black;
     height: 100%;
     width:100%;
     position: absolute;
 }
 #page2{
-    background-color: yellow;
+    background-color: rgb(37, 37, 37);
     height: 100%;
     width:100%;
     position: absolute;
     opacity: 0;
 }
 #page3{
-    background-color: greenyellow;
+    background-color: rgb(73, 73, 73);
     opacity: 0;
     height: 100%;
     width:100%;
     position: absolute;
 }
 #page4{
-    background-color: skyblue;
+    background-color: rgb(110, 110, 110);
     opacity: 0;
     height: 100%;
     width:100%;

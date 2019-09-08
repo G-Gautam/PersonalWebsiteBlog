@@ -1,22 +1,25 @@
 var currentPage = 1;
+var intervalSwitch;
 
 function startToneArm() {
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', originalPositionListen, false);
     arm.style.animation = 'none';
-    arm.style.animation = 'arm-rotate 3s forwards';
+    arm.style.animation = 'arm-rotate 60s forwards';
     arm.addEventListener('animationend', AnimationListener, false);
+    intervalSwitch = setInterval(function () { startSwitchView() }, 12000);
 }
 
-function AnimationListener(){
+function AnimationListener() {
+    clearInterval(intervalSwitch);
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', AnimationListener, false);
     arm.style.animation = 'none';
     void arm.offsetWidth;
-    arm.style.animation = 'arm-return 2s linear';
+    arm.style.animation = 'arm-return 1s linear';
     arm.addEventListener('animationend', originalPositionListen, false);
 }
-function originalPositionListen(){
+function originalPositionListen() {
     startToneArm();
 }
 
@@ -38,7 +41,9 @@ function originalPositionListen(){
         }
     }
 })();
-function switchView() {
+
+function startSwitchView() {
+
     switch (currentPage) {
         case 1:
             //destroy page 1 and open page 2
@@ -70,6 +75,15 @@ function switchView() {
             break;
         case 4:
             var page = document.getElementById('page4');
+            page.style.opacity = 0;
+            page.style.animation = 'rotate-out 1s';
+            var next = document.getElementById('page5');
+            next.style.animation = 'rotate-in 1s';
+            next.style.opacity = 1;
+            currentPage = 5;
+            break;
+        case 5:
+            var page = document.getElementById('page5');
             page.style.opacity = 0;
             page.style.animation = 'rotate-out 1s';
             var next = document.getElementById('page1');

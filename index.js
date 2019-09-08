@@ -1,17 +1,15 @@
 var currentPage = 1;
-var intervalSwitch;
 
 function startToneArm() {
+
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', originalPositionListen, false);
     arm.style.animation = 'none';
-    arm.style.animation = 'arm-rotate 60s forwards';
+    arm.style.animation = 'arm-rotate 6s forwards';
     arm.addEventListener('animationend', AnimationListener, false);
-    intervalSwitch = setInterval(function () { startSwitchView() }, 12000);
 }
 
 function AnimationListener() {
-    clearInterval(intervalSwitch);
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', AnimationListener, false);
     arm.style.animation = 'none';
@@ -21,6 +19,25 @@ function AnimationListener() {
 }
 function originalPositionListen() {
     startToneArm();
+}
+
+function startScroll(){
+    var content = document.getElementById('scroll');
+    content.removeEventListener('animationend', originalPositionListenContent, false);
+    content.style.animation = 'none';
+    content.style.animation = 'slide 6s forwards';
+    content.addEventListener('animationend', AnimationListenerContent, false);
+}
+function AnimationListenerContent() {
+    var content = document.getElementById('scroll');
+    content.removeEventListener('animationend', AnimationListenerContent, false);
+    content.style.animation = 'none';
+    void content.offsetWidth;
+    content.style.animation = 'slide-return 1s linear';
+    content.addEventListener('animationend', originalPositionListenContent, false);
+}
+function originalPositionListenContent() {
+    startScroll();
 }
 
 (function () {
@@ -33,6 +50,7 @@ function originalPositionListen() {
             clearInterval(id);
             document.body.removeChild(preload);
             startToneArm();
+            startScroll();
         } else {
             loading = loading + 1;
             if (loading == 45) {
@@ -41,55 +59,3 @@ function originalPositionListen() {
         }
     }
 })();
-
-function startSwitchView() {
-
-    switch (currentPage) {
-        case 1:
-            //destroy page 1 and open page 2
-            var page = document.getElementById('page1');
-            page.style.opacity = 0;
-            page.style.animation = 'rotate-out 1s';
-            var next = document.getElementById('page2');
-            next.style.animation = 'rotate-in 1s';
-            next.style.opacity = 1;
-            currentPage = 2;
-            break;
-        case 2:
-            var page = document.getElementById('page2');
-            page.style.opacity = 0;
-            page.style.animation = 'rotate-out 1s';
-            var next = document.getElementById('page3');
-            next.style.animation = 'rotate-in 1s';
-            next.style.opacity = 1;
-            currentPage = 3;
-            break;
-        case 3:
-            var page = document.getElementById('page3');
-            page.style.opacity = 0;
-            page.style.animation = 'rotate-out 1s';
-            var next = document.getElementById('page4');
-            next.style.animation = 'rotate-in 1s';
-            next.style.opacity = 1;
-            currentPage = 4;
-            break;
-        case 4:
-            var page = document.getElementById('page4');
-            page.style.opacity = 0;
-            page.style.animation = 'rotate-out 1s';
-            var next = document.getElementById('page5');
-            next.style.animation = 'rotate-in 1s';
-            next.style.opacity = 1;
-            currentPage = 5;
-            break;
-        case 5:
-            var page = document.getElementById('page5');
-            page.style.opacity = 0;
-            page.style.animation = 'rotate-out 1s';
-            var next = document.getElementById('page1');
-            next.style.animation = 'rotate-in 1s';
-            next.style.opacity = 1;
-            currentPage = 1;
-            break;
-    }
-}

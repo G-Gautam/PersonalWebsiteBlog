@@ -89,20 +89,7 @@ body{
  } 
 
  @keyframes arm-rotate {
-     /* 1st page */
      0% {transform: rotate(0deg); transform-origin: 38.7% 76.6%}
-     20% {transform: rotate(0deg); transform-origin: 38.7% 76.6%}
-     /* 2nd page */
-     30%{transform: rotate(40deg); transform-origin: 38.7% 76.6%}
-     40%{transform: rotate(40deg); transform-origin: 38.7% 76.6%}
-     /* 3rd page */
-     50% {transform: rotate(80deg); transform-origin: 38.7% 76.6%}
-     60% {transform: rotate(80deg); transform-origin: 38.7% 76.6%}
-     /* 4th page */
-     70% {transform: rotate(115deg); transform-origin: 38.7% 76.6%}
-     80% {transform: rotate(115deg); transform-origin: 38.7% 76.6%}
-     /* 5th page */
-     90% {transform: rotate(155deg); transform-origin: 38.7% 76.6%}
      100% {transform: rotate(155deg); transform-origin: 38.7% 76.6%}
 }
  @keyframes arm-return {
@@ -139,7 +126,8 @@ body{
     width:70%;
     transform-style: preserve-3d;
     transition: all 0.5s ease;
-    background-color: white;
+    background-color: black;
+    overflow: scroll;
 }
 
 .navContainer{
@@ -156,53 +144,46 @@ body{
 }
 #about{
     margin-top: 20%;
-    margin-left: 60%;
+    margin-left: 62%;
 }
 #work{
-    margin-top: 40%;
-    margin-left: 75%;
+    margin-top: 42%;
+    margin-left: 78%;
 }
 #blog{
-    margin-top: 40%;
-    margin-left: 60%;
+    margin-top: 42%;
+    margin-left: 62%;
 }
 #connect{
     margin-top: 20%;
-    margin-left: 20%;
+    margin-left: 25%;
 }
 
-
-#page1{
+@keyframes slide {
+    0% {
+      bottom: 0%;
+    }
+    100% {
+      bottom: 100%;
+    }
+}
+@keyframes slide-return {
+    0% {
+      bottom: 100%;
+    }
+    100% {
+      bottom: 0%;
+    }
+}
+.content{
     background-color: black;
     height: 100%;
     width:100%;
     position: absolute;
+    scroll-behavior: smooth;
 }
-#page2{
-    background-color: rgb(37, 37, 37);
-    height: 100%;
-    width:100%;
-    position: absolute;
-    opacity: 0;
-}
-#page3{
-    background-color: rgb(73, 73, 73);
-    opacity: 0;
-    height: 100%;
-    width:100%;
-    position: absolute;
-}
-#page4{
-    background-color: rgb(110, 110, 110);
-    opacity: 0;
-    height: 100%;
-    width:100%;
-    position: absolute;
-}
-#page5{
-    background-color: rgb(179, 179, 179);
-    opacity: 0;
-    height: 100%;
-    width:100%;
-    position: absolute;
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }

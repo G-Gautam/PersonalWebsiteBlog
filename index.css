@@ -43,7 +43,7 @@ body{
     border-bottom: 10px solid #f5d300;
     top: 10%;
     left: 10%;
-    animation: clockwisespin 1s linear 3;
+    animation: clockwisespin 2s linear 2;
 }
 .loader2 {
     width: 100%;
@@ -52,7 +52,7 @@ body{
     margin-right: auto;
     border-left: 10px solid #09FBD3;
     border-right: 10px solid #09FBD3;
-    animation: anticlockwisespin 2s linear 1.5;
+    animation: anticlockwisespin 4s linear 1;
 }
 .loader3 {
     width: 60%;
@@ -63,7 +63,12 @@ body{
     border-right: 10px solid #FE53BB;
     top: 20%;
     left: 20%;
-    animation: anticlockwisespin 3s linear 1;
+    animation: anticlockwisespin 2s linear 2;
+}
+
+@keyframes loadingTitle{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 @keyframes clockwisespin {
     from {transform: rotate(0deg);}
@@ -99,13 +104,13 @@ body{
 .vinylNav{
     position: absolute;
     height: 100%;
-    width: 30%;
+    width: 20%;
     background-color: black; 
 }
 
 .vinylDisc{
     position: absolute;
-    height:80%;
+    height:56%;
     max-width: 100%;
     top: 50%;
     transform: translateY(-50%);
@@ -114,8 +119,8 @@ body{
 
 .arm{
     position: relative;
-    height: 40%;
-    margin-top:37%;
+    height: 25%;
+    margin-top:90%;
     z-index: 1;
     right:12%;
 }
@@ -123,11 +128,22 @@ body{
     position: absolute;
     left:30%;
     height: 100%;
-    width:70%;
+    width:50%;
     transform-style: preserve-3d;
-    transition: all 0.5s ease;
     background-color: black;
     overflow: scroll;
+}
+
+.lastContainer{
+    position: absolute;
+    left: 80%;
+    height: 100%;
+    width: 20%;
+    background-color: black;
+    overflow: scroll;
+    border-left: 1px solid white;
+    text-align: center;
+    transform-style: preserve-3d;
 }
 
 .navContainer{
@@ -139,23 +155,23 @@ body{
 }
 
 #home{
-    margin-top: -95%;
+    margin-top: -105%;
     margin-left: 25%;
 }
 #about{
-    margin-top: 20%;
-    margin-left: 62%;
+    margin-top: 22%;
+    margin-left: 70%;
 }
 #work{
     margin-top: 42%;
-    margin-left: 78%;
+    margin-left: 85%;
 }
 #blog{
     margin-top: 42%;
-    margin-left: 62%;
+    margin-left: 70%;
 }
 #connect{
-    margin-top: 20%;
+    margin-top: 22%;
     margin-left: 25%;
 }
 
@@ -164,26 +180,49 @@ body{
       bottom: 0%;
     }
     100% {
-      bottom: 100%;
+      bottom: 200%;
     }
 }
 @keyframes slide-return {
     0% {
-      bottom: 100%;
+      bottom: 200%;
     }
     100% {
       bottom: 0%;
     }
 }
-.content{
+.content, .lastContent{
     background-color: black;
     height: 100%;
     width:100%;
     position: absolute;
-    scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
+}
+
+.loadingTitle{
+    font-family: 'Raleway', sans-serif;
+    font-size: 4vw;
+    animation: loadingTitle 2s ease;
+}
+
+.homeContent{
+    margin-right: 5%;
+    margin-left: 5%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 5vw;
+    color: white;
+}
+#line1{
+    margin-top: 40%;
+    font-weight: bold;
+}
+
+.profilePic{
+    max-width: 80%;
+    margin-top: 150%;
+    opacity: 0.8;
 }

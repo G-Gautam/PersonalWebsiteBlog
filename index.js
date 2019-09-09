@@ -1,22 +1,29 @@
 var currentPage = 1;
+var userScolled = false;
 
 function startToneArm() {
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', originalPositionListen, false);
     arm.style.animation = 'none';
-    arm.style.animation = 'arm-rotate 60s forwards';
+    arm.style.animation = 'arm-rotate 45s forwards';
     arm.addEventListener('animationend', AnimationListener, false);
 }
 
 function AnimationListener() {
+    if(this.userScrolled){
+        return;
+    }
     var arm = document.getElementById('arm');
     arm.removeEventListener('animationend', AnimationListener, false);
     arm.style.animation = 'none';
     void arm.offsetWidth;
-    arm.style.animation = 'arm-return 1s linear';
+    arm.style.animation = 'arm-return 2.5s linear';
     arm.addEventListener('animationend', originalPositionListen, false);
 }
 function originalPositionListen() {
+    if(this.userScrolled){
+        return;
+    }
     startToneArm();
 }
 
@@ -24,40 +31,29 @@ function startScroll(){
     var content = document.getElementById('scroll');
     content.removeEventListener('animationend', originalPositionListenContent, false);
     content.style.animation = 'none';
-    content.style.animation = 'slide 60s forwards';
+    content.style.animation = 'slide 45s forwards';
     content.addEventListener('animationend', AnimationListenerContent, false);
 }
 function AnimationListenerContent() {
+    if(this.userScrolled){
+        return;
+    }
     var content = document.getElementById('scroll');
     content.removeEventListener('animationend', AnimationListenerContent, false);
     content.style.animation = 'none';
     void content.offsetWidth;
-    content.style.animation = 'slide-return 1s linear';
+    content.style.animation = 'slide-return 2.5s linear';
     content.addEventListener('animationend', originalPositionListenContent, false);
 }
 function originalPositionListenContent() {
+    if(this.userScrolled){
+        return;
+    }
     startScroll();
 }
 
-function startLastScroll(){
-    var last = document.getElementById('lastScroll');
-    last.removeEventListener('animationend', originalPositionListenLast, false);
-    last.style.animation ='none';
-    last.style.animation = 'slide 60s forwards';
-    last.addEventListener('animationend', AnimationListenerLast, false);
-}
-
-function AnimationListenerLast(){
-    var last = document.getElementById('lastScroll');
-    last.removeEventListener('animationend', AnimationListenerLast, false);
-    last.style.animation ='none';
-    void last.offsetWidth;
-    last.style.animation = 'slide-return 1s linear';
-    last.addEventListener('animationend', originalPositionListenLast, false);
-}
-
-function originalPositionListenLast() {
-    startLastScroll();
+function promptAnimation() {
+    document.getElementById('prompt').style.animation = 'prompt 1s infinite';
 }
 
 (function () {
@@ -70,13 +66,11 @@ function originalPositionListenLast() {
             clearInterval(id);
             document.body.removeChild(preload);
             startToneArm();
-            startScroll();
             AOS.init({
-                debounceDelay: 50,
-                once: false,
-                mirror: true
+                duration: 2000
             });
-            startLastScroll();
+            startScroll();
+            promptAnimation();
         } else {
             loading = loading + 1;
             if (loading == 45) {
@@ -86,3 +80,13 @@ function originalPositionListenLast() {
     }
 })();
 
+document.getElementById('scroll').onwheel = function(){
+    var arm = document.getElementById('arm');
+    var scroll = document.getElementById('scroll');
+
+    arm.style.animationPlayState = 'paused';
+    scroll.style.animationPlayState = 'paused';
+    arm.style.animation = 'none';
+    scroll.style.animation = 'none';
+    this.userScolled = true;
+}

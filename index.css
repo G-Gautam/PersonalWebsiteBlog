@@ -126,24 +126,13 @@ body{
 }
 .viewContainer{
     position: absolute;
-    left:30%;
+    left:20%;
     height: 100%;
-    width:50%;
+    width:80%;
     transform-style: preserve-3d;
     background-color: black;
     overflow: scroll;
-}
-
-.lastContainer{
-    position: absolute;
-    left: 80%;
-    height: 100%;
-    width: 20%;
-    background-color: black;
-    overflow: scroll;
-    border-left: 1px solid white;
-    text-align: center;
-    transform-style: preserve-3d;
+    text-align: right;
 }
 
 .navContainer{
@@ -154,6 +143,13 @@ body{
     color: white;
 }
 
+.verticalLine{
+    width: 1px;
+    height: 500%;
+    position: absolute;
+    left: 70%;
+    background-color: white;
+}
 #home{
     margin-top: -105%;
     margin-left: 25%;
@@ -191,11 +187,24 @@ body{
       bottom: 0%;
     }
 }
-.content, .lastContent{
+
+@keyframes prompt{
+    0%{
+        top: 0px;
+    }
+    50%{
+        top: 10px;
+    }
+    100%{
+        top: 0px;
+    }
+}
+.content{
     background-color: black;
-    height: 100%;
+    height:100%;
     width:100%;
     position: absolute;
+    text-align: left;
 }
 
 ::-webkit-scrollbar {
@@ -211,18 +220,43 @@ body{
 
 .homeContent{
     margin-right: 5%;
-    margin-left: 5%;
+    margin-left: 10%;
     font-family: 'Raleway', sans-serif;
     font-size: 5vw;
     color: white;
+    text-align: right;
 }
 #line1{
-    margin-top: 40%;
     font-weight: bold;
+    margin-top: 40%;
 }
 
 .profilePic{
-    max-width: 80%;
-    margin-top: 150%;
-    opacity: 0.8;
+    width: 25%;
+    opacity: 0.1;
+    position: relative;
+    left: 60%;
+}
+
+.textRow{
+    position: relative;
+    width: 70%;
+}
+
+.secondCol{
+    width:25%;
+    left:75%;
+    position: relative;
+}
+
+.subContainer{
+    position: relative;
+    width: 100%;
+}
+
+.prompt{
+    margin-top: -150%;
+    color: white;
+    position: absolute;
+    z-index: 3;
 }

@@ -10,7 +10,7 @@ function startToneArm() {
 }
 
 function AnimationListener() {
-    if(this.userScrolled){
+    if (this.userScrolled) {
         return;
     }
     var arm = document.getElementById('arm');
@@ -21,13 +21,13 @@ function AnimationListener() {
     arm.addEventListener('animationend', originalPositionListen, false);
 }
 function originalPositionListen() {
-    if(this.userScrolled){
+    if (this.userScrolled) {
         return;
     }
     startToneArm();
 }
 
-function startScroll(){
+function startScroll() {
     var content = document.getElementById('scroll');
     content.removeEventListener('animationend', originalPositionListenContent, false);
     content.style.animation = 'none';
@@ -35,7 +35,7 @@ function startScroll(){
     content.addEventListener('animationend', AnimationListenerContent, false);
 }
 function AnimationListenerContent() {
-    if(this.userScrolled){
+    if (this.userScrolled) {
         return;
     }
     var content = document.getElementById('scroll');
@@ -46,7 +46,7 @@ function AnimationListenerContent() {
     content.addEventListener('animationend', originalPositionListenContent, false);
 }
 function originalPositionListenContent() {
-    if(this.userScrolled){
+    if (this.userScrolled) {
         return;
     }
     startScroll();
@@ -80,13 +80,21 @@ function promptAnimation() {
     }
 })();
 
-document.getElementById('scroll').onwheel = function(){
+document.getElementById('scroll').onwheel = function () {
     var arm = document.getElementById('arm');
     var scroll = document.getElementById('scroll');
-
+    var viewContainer = document.getElementById('viewContainer');
     arm.style.animationPlayState = 'paused';
     scroll.style.animationPlayState = 'paused';
-    arm.style.animation = 'none';
     scroll.style.animation = 'none';
     this.userScolled = true;
+    var deg = viewContainer.scrollTop / 1673*155;
+    console.log(viewContainer.scrollTop, viewContainer.offsetHeight)
+    arm.style = 'transform: rotate('+ deg.toString() + 'deg); transform-origin: 38.7% 76.6%;';
+}
+
+function StartAnimation() {
+    this.userScolled = false;
+    startScroll();
+    startToneArm();
 }

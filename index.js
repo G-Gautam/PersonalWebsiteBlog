@@ -95,6 +95,6 @@ document.getElementById('scroll').onwheel = function () {
 
 function StartAnimation() {
     this.userScolled = false;
-    startScroll();
-    startToneArm();
+    AnimationListener();
+    AnimationListenerContent();
 }

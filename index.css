@@ -134,6 +134,8 @@ body{
     background-color: black;
     overflow: scroll;
     text-align: right;
+    scroll-behavior: smooth;
+    animation-fill-mode: forwards;
 }
 
 .verticalLine{

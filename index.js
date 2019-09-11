@@ -1,5 +1,5 @@
 var currentPage = 1;
-var userScolled = false;
+var userScrolled;
 
 function startToneArm() {
     var arm = document.getElementById('arm');
@@ -10,7 +10,7 @@ function startToneArm() {
 }
 
 function AnimationListener() {
-    if (this.userScrolled) {
+    if (userScrolled) {
         return;
     }
     var arm = document.getElementById('arm');
@@ -21,7 +21,7 @@ function AnimationListener() {
     arm.addEventListener('animationend', originalPositionListen, false);
 }
 function originalPositionListen() {
-    if (this.userScrolled) {
+    if (userScrolled) {
         return;
     }
     startToneArm();
@@ -35,7 +35,7 @@ function startScroll() {
     content.addEventListener('animationend', AnimationListenerContent, false);
 }
 function AnimationListenerContent() {
-    if (this.userScrolled) {
+    if (userScrolled) {
         return;
     }
     var content = document.getElementById('scroll');
@@ -46,7 +46,7 @@ function AnimationListenerContent() {
     content.addEventListener('animationend', originalPositionListenContent, false);
 }
 function originalPositionListenContent() {
-    if (this.userScrolled) {
+    if (userScrolled) {
         return;
     }
     startScroll();
@@ -69,6 +69,7 @@ function promptAnimation() {
             AOS.init({
                 duration: 2000
             });
+            userScrolled = false;
             startScroll();
             promptAnimation();
         } else {
@@ -81,20 +82,32 @@ function promptAnimation() {
 })();
 
 document.getElementById('scroll').onwheel = function () {
+    
     var arm = document.getElementById('arm');
     var scroll = document.getElementById('scroll');
     var viewContainer = document.getElementById('viewContainer');
+    var currentScroll = viewContainer.scrollTop;
     arm.style.animationPlayState = 'paused';
     scroll.style.animationPlayState = 'paused';
     scroll.style.animation = 'none';
-    this.userScolled = true;
+    if(userScrolled == false){
+        viewContainer.scrollTo(0, currentScroll);
+        userScrolled = true;
+    }
     var deg = viewContainer.scrollTop / 1673*155;
-    console.log(viewContainer.scrollTop, viewContainer.offsetHeight)
     arm.style = 'transform: rotate('+ deg.toString() + 'deg); transform-origin: 38.7% 76.6%;';
 }
 
 function StartAnimation() {
-    this.userScolled = false;
-    AnimationListener();
-    AnimationListenerContent();
+    userScrolled = false;
+    var viewContainer = document.getElementById('viewContainer');
+    console.log(viewContainer.scrollTop);
+    if(viewContainer.scrollTop <= 500){
+        startScroll();
+        startToneArm();
+    }
+    else{
+        AnimationListener();
+        AnimationListenerContent();
+    }
 }

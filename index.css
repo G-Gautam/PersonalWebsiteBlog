@@ -145,26 +145,6 @@ body{
     left: 70%;
     background-color: white;
 }
-/* #home{
-    margin-top: -105%;
-    margin-left: 25%;
-}
-#about{
-    margin-top: 22%;
-    margin-left: 70%;
-}
-#work{
-    margin-top: 42%;
-    margin-left: 85%;
-}
-#blog{
-    margin-top: 42%;
-    margin-left: 70%;
-}
-#connect{
-    margin-top: 22%;
-    margin-left: 25%;
-} */
 
 @keyframes slide {
     0% {
@@ -254,4 +234,20 @@ body{
     color: white;
     position: absolute;
     z-index: 3;
+}
+
+.about{
+    font-family: 'Raleway', sans-serif;
+    text-shadow:
+		-1px -1px 0 #fff,
+		1px -1px 0 #fff,
+		-1px 1px 0 #fff,
+        1px 1px 0 #fff;
+        
+    font-size: 10vw;
+    color: black;
+    font-weight: 800;
+    text-align: right;
+    margin-right: 5%;
+    margin-left: 10%;
 }

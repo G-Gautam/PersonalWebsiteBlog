@@ -67,7 +67,6 @@ function promptAnimation() {
             document.body.removeChild(preload);
             startToneArm();
             AOS.init({
-                duration: 2000
             });
             userScrolled = false;
             startScroll();
@@ -86,14 +85,35 @@ document.getElementById('scroll').onwheel = function () {
     var arm = document.getElementById('arm');
     var scroll = document.getElementById('scroll');
     var viewContainer = document.getElementById('viewContainer');
-    var currentScroll = viewContainer.scrollTop;
+
     arm.style.animationPlayState = 'paused';
     scroll.style.animationPlayState = 'paused';
     scroll.style.animation = 'none';
+
     if(userScrolled == false){
-        viewContainer.scrollTo(0, currentScroll);
-        userScrolled = true;
+        var style = window.getComputedStyle(arm, null);
+        var rotation = style.getPropertyValue("-webkit-transform") ||
+        style.getPropertyValue("-moz-transform") ||
+        style.getPropertyValue("-ms-transform") ||
+        style.getPropertyValue("-o-transform") ||
+        style.getPropertyValue("transform") ||
+        "fail...";
+    
+        var values = rotation.split('(')[1];
+          values = values.split(')')[0];
+          values = values.split(',');
+        var a = values[0];
+        var b = values[1];
+        var c = values[2];
+        var d = values[3];
+    
+        var radians = Math.atan2(b, a);
+        var angle = Math.round( radians * (180/Math.PI));
+        viewContainer.scrollTo(0,angle/155*1673);
+        arm.style.animation = 'none';
+        arm.style = 'transform: rotate('+ angle.toString() + 'deg); transform-origin: 38.7% 76.6%;';
     }
+    userScrolled = true;
     var deg = viewContainer.scrollTop / 1673*155;
     arm.style = 'transform: rotate('+ deg.toString() + 'deg); transform-origin: 38.7% 76.6%;';
 }
